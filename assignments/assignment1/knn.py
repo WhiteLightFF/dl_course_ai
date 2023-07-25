@@ -96,9 +96,10 @@ class KNN:
         num_test = X.shape[0]
         # Using float32 to to save memory - the default is float64
         dists = np.zeros((num_test, num_train), np.float32)
-        dist = X @ self.train_X.T
+        #dists = X @ self.train_X.T
+        dists = np.array(list(map(lambda x: np.sum(np.abs(X - x)) , self.train_X)))
         # TODO: Implement computing all distances with no loops!
-        return dist
+        return dists
 
     def predict_labels_binary(self, dists):
         '''
