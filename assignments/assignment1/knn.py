@@ -77,7 +77,7 @@ class KNN:
         for i_test in range(num_test):
             # TODO: Fill the whole row of dists[i_test]
             # without additional loops or list comprehensions
-            dists[i_test] = list(lambda x: np.sum(np.abs(X[i_test] - x)) , self.train_X)
+            dists[i_test] = np.array(list(map(lambda x: np.sum(np.abs(X[i_test] - x)) , self.train_X)))
         return dists
 
     def compute_distances_no_loops(self, X):
