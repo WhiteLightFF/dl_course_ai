@@ -117,9 +117,17 @@ class KNN:
         print("num_test", num_test)
         pred = np.zeros(num_test, dtype = bool)#[0.........15]
         for i in range(num_test):
-            index = dists[i].argmin()
-            pred[i] =  self.train_y[index]
-            # TODO: Implement choosing best class based on k
+            indexes = dists[i].argsort()
+            indexesK = indexes[0:self.k]
+            cls = self.train_y[indexesK]
+            labels = cls[cls == True].size - cls[cls == False].size
+            if(labels >0):
+                pred[i] = True
+            if(labels < 0):
+                pred[i] = False
+            if(labels == 0 ):
+                pred[i] = bool(np.random.randint(0,1))
+                # TODO: Implement choosing best class based on k
             # nearest training samples
         return pred
 
