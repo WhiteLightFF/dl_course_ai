@@ -114,7 +114,6 @@ class KNN:
            for every test sample
         '''
         num_test = dists.shape[0]#16
-        print("num_test", num_test)
         pred = np.zeros(num_test, dtype = bool)#[0.........15]
         for i in range(num_test):
             indexes = dists[i].argsort()
