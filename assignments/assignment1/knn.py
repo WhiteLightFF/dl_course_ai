@@ -144,9 +144,13 @@ class KNN:
         '''
         num_test = dists.shape[0]
         num_test = dists.shape[0]
-        pred = np.zeros(num_test, np.int)
+        pred = np.zeros(num_test, dtype = 'int')
         for i in range(num_test):
+            indexes = dists[i].argsort()
+            indexesK = indexes[0:self.k]
+            cls = self.train_y[indexesK]
+            #labels = cls[cls == True].size - cls[cls == False].size
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            pass
+            print(cls)
         return pred
