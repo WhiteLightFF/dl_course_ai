@@ -1,4 +1,5 @@
 import numpy as np
+from collections import Counter
 
 
 class KNN:
@@ -143,14 +144,13 @@ class KNN:
            for every test sample
         '''
         num_test = dists.shape[0]
-        num_test = dists.shape[0]
         pred = np.zeros(num_test, dtype = 'int')
         for i in range(num_test):
             indexes = dists[i].argsort()
             indexesK = indexes[0:self.k]
             cls = self.train_y[indexesK]
+            pred[i] = Counter(cls).most_common(1)[0][0]
             #labels = cls[cls == True].size - cls[cls == False].size
             # TODO: Implement choosing best class based on k
             # nearest training samples
-            print(cls)
         return pred

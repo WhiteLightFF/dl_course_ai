@@ -42,5 +42,11 @@ def multiclass_accuracy(prediction, ground_truth):
     Returns:
     accuracy - ratio of accurate predictions to total samples
     '''
+    correct_predict = 0
+    for i in(ground_truth):
+        if(prediction[i] == ground_truth[i]):
+            correct_predict += 1
+    accuracy = correct_predict / ground_truth.shape[0]
+            
     # TODO: Implement computing accuracy
-    return 0
+    return accuracy
